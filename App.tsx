@@ -5,7 +5,7 @@ import { shallow } from 'zustand/shallow';
 import { useStore } from './store';
 import Osc from './nodes/Osc';
 import Amp from './nodes/Amp';
-
+// import Out from './nodes/Out';
 
 import '@xyflow/react/dist/style.css';
 
