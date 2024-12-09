@@ -1,10 +1,10 @@
 import React from 'react';
-import { ReactFlow, ReactFlowProvider, Background } from '@xyflow/react';
+import { ReactFlow, ReactFlowProvider, Background, MarkerType } from '@xyflow/react';
 import { shallow } from 'zustand/shallow';
 
-import { useStore } from './store';
-import Osc from './nodes/Osc';
-import Amp from './nodes/Amp';
+import { useStore } from './src/store';
+import Osc from './src/nodes/Osc';
+import Amp from './src/nodes/Amp';
 // import Out from './nodes/Out';
 
 import '@xyflow/react/dist/style.css';
@@ -13,6 +13,20 @@ const nodeTypes = {
   osc: Osc,
   amp: Amp
 };
+
+
+const defaultEdgeOptions = { 
+  type: 'smoothstep',
+  markerEnd: {
+    type: MarkerType.ArrowClosed,
+    color: '#888888',
+  },
+  style: {
+    strokeWidth: 1,
+    stroke: '#888888',
+  }
+};
+
 
 const selector = (store) => ({
   nodes: store.nodes,
@@ -35,6 +49,7 @@ export default function App() {
           onNodesChange={store.onNodesChange}
           onEdgesChange={store.onEdgesChange}
           onConnect={store.addEdge}
+          defaultEdgeOptions={defaultEdgeOptions}
           fitView
         >
           <Background />
